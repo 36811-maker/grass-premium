@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRASS PREMIUM — The Most Expensive Grass in the World</title>
+  
+  <!-- Meta description and brand -->
+  <meta name="description" content="Touch the grass. Experience the luxury. An ultra-realistic interactive digital botanical simulation and haute couture lawn experience.">
+  <meta name="theme-color" content="#101610">
+  
+  <!-- Google Fonts: Luxury Serif & Modern Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 28 C16 18 10 10 24 4 C14 12 18 20 16 28 Z' fill='%23C6A45B'/%3E%3Cpath d='M16 28 C16 20 22 14 28 10 C20 16 19 22 16 28 Z' fill='%23668C49'/%3E%3Cpath d='M16 28 C15 19 8 13 4 12 C10 16 13 22 16 28 Z' fill='%23315D32'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =======================================================================
+       HEADER / TOP NAVIGATION
+       ======================================================================= -->
+  <header class="site-header" id="site-header">
+    <a href="#hero" class="brand" aria-label="Grass Premium Home">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22C12 14 7 7 19 2C10 8 13 15 12 22Z" />
+          <path d="M12 22C12 16 17 11 22 8C15 13 14 17 12 22Z" opacity="0.6"/>
+          <path d="M12 22C11 15 5 10 2 9C7 13 9 17 12 22Z" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Grass Premium</span>
+        <span class="brand-tag">Haute Botanique</span>
+      </div>
+    </a>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#collection" class="nav-link">Grass Collection</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#statistics" class="nav-link">Statistics</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Active Grass Pill indicator -->
+      <div class="active-grass-pill" id="header-active-grass" title="Active Grass Selection">
+        <span class="pill-dot"></span>
+        <span id="header-grass-name">Classic Green</span>
+      </div>
+
+      <!-- Quick Audio Toggle -->
+      <button class="btn-icon" id="quick-audio-btn" title="Toggle Sound Sanctuary" aria-label="Toggle Sound">
+        <svg viewBox="0 0 24 24" id="audio-icon-svg">
+          <path d="M11 5L6 9H2V15H6L11 19V5Z"/>
+          <path d="M15.54 8.46C16.47 9.39 17 10.63 17 12C17 13.37 16.47 14.61 15.54 15.54" class="sound-wave"/>
+          <path d="M19.07 4.93C20.94 6.8 22 9.34 22 12C22 14.66 20.94 17.2 19.07 19.07" class="sound-wave"/>
+        </svg>
+      </button>
+
+      <!-- Relax Mode Toggle Button -->
+      <button class="btn-icon" id="quick-relax-btn" title="Enter Relax Mode (Zen View)" aria-label="Relax Mode">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2A10 10 0 0 1 22 12"/>
+        </svg>
+      </button>
+
+      <!-- Fullscreen Toggle Button -->
+      <button class="btn-icon" id="quick-fullscreen-btn" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+        <svg viewBox="0 0 24 24">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+      </button>
+
+      <!-- Mobile Hamburger -->
+      <button class="mobile-nav-toggle" id="mobile-nav-btn" aria-label="Open Navigation Menu">
+        <svg viewBox="0 0 24 24">
+          <line x1="3" y1="12" x2="21" y2="12" stroke-width="2"/>
+          <line x1="3" y1="6" x2="21" y2="6" stroke-width="2"/>
+          <line x1="3" y1="18" x2="21" y2="18" stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- =======================================================================
+       HERO SECTION — INTERACTIVE 2D CANVAS GRASS REALM
+       ======================================================================= -->
+  <main>
+    <section class="hero-section" id="hero">
+      <!-- Fullscreen Grass Canvas -->
+      <canvas id="grass-canvas"></canvas>
+
+      <!-- Atmospheric Ambient Lighting -->
+      <div class="atmosphere-overlay" id="atmosphere-overlay" data-time="morning"></div>
+
+      <!-- Rain Visual Effect Overlay -->
+      <div class="rain-atmosphere-filter" id="rain-atmosphere-filter"></div>
+
+      <!-- Hero Centered Typography -->
+      <div class="hero-content" id="hero-content">
+        <div class="hero-badge">
+          <span>The World's Most Exclusive Lawn</span>
+        </div>
+        <h1 class="hero-title">
+          Nature was free.<br>We made it <em>premium.</em>
+        </h1>
+        <p class="hero-subtitle">
+          Experience the extraordinary luxury of touching grass.
+        </p>
+        <div class="cursor-hint" id="cursor-hint">
+          <svg class="hint-hand-icon" viewBox="0 0 24 24">
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+            <path d="M10 13V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v10a7 7 0 0 0 7 7h3a7 7 0 0 0 7-7v-6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2"/>
+          </svg>
+          <span>Move your cursor across the grass</span>
+        </div>
+      </div>
+
+      <!-- Bottom Hero HUD / Telemetry Deck -->
+      <div class="hero-hud" id="hero-hud">
+        <div class="hud-left">
+          <div class="hud-panel">
+            <div class="grass-info-widget">
+              <span class="grass-label-tiny">Current Species</span>
+              <span class="grass-name-active" id="hud-grass-name">Classic Green</span>
+              <span class="grass-status-badge" id="hud-grass-badge">Free Experience</span>
+            </div>
+            <div class="hud-telemetry">
+              <div class="telemetry-item">
+                <span class="telemetry-label">Touches</span>
+                <span class="telemetry-val" id="hud-touches-count">0</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-label">Wind</span>
+                <span class="telemetry-val" id="hud-wind-status">Gentle (25%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-right">
+          <div class="hud-actions">
+            <a href="#collection" class="btn-luxury">
+              <span>Explore Collection</span>
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <button class="btn-glass" id="hud-relax-btn" title="Enter Zen Mode">
+              <span>Relax Mode</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Relax Mode Exit Button -->
+    <button class="btn-glass relax-exit-btn" id="relax-exit-btn" title="Exit Relax Mode">
+      <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; stroke: currentColor; fill: none;">
+        <line x1="18" y1="6" x2="6" y2="18" stroke-width="2"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke-width="2"/>
+      </svg>
+      <span>Exit Relax Mode (Esc)</span>
+    </button>
+
+    <!-- Floating Environmental Quick Dock -->
+    <aside class="environment-dock" id="environment-dock" aria-label="Environment Quick Controls">
+      <!-- Wind Controller -->
+      <div class="dock-item">
+        <label for="dock-wind-slider" title="Adjust wind intensity">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" stroke-width="2"/></svg>
+          <span>Wind</span>
+        </label>
+        <input type="range" id="dock-wind-slider" min="0" max="100" value="25" step="1">
+      </div>
+
+      <!-- Time of Day Pills -->
+      <div class="dock-item">
+        <div class="time-selector-pills" id="dock-time-pills">
+          <button class="time-pill" data-time="sunrise" title="Sunrise">Dawn</button>
+          <button class="time-pill active" data-time="morning" title="Morning">Morning</button>
+          <button class="time-pill" data-time="afternoon" title="Afternoon">Day</button>
+          <button class="time-pill" data-time="sunset" title="Sunset">Dusk</button>
+          <button class="time-pill" data-time="night" title="Night">Night</button>
+        </div>
+      </div>
+
+      <!-- Rain Mode Button -->
+      <div class="dock-item">
+        <button class="toggle-chip" id="dock-rain-toggle" title="Toggle Rain Simulation">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25M8 19v2m8-2v2m-4-1v2" stroke-width="2"/></svg>
+          <span id="dock-rain-label">Rain Mode</span>
+        </button>
+      </div>
+
+      <!-- Sound Toggle -->
+      <div class="dock-item">
+        <button class="toggle-chip" id="dock-sound-toggle" title="Toggle Nature Audio">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke-width="2"/></svg>
+          <span id="dock-sound-label">Audio: Off</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- =======================================================================
+         SECTION 1: THE GRASS COLLECTION (HAUTE BOTANIQUE STORE)
+         ======================================================================= -->
+    <section class="content-section" id="collection">
+      <div class="section-header">
+        <span class="section-tag">Haute Botanique 2026 Collection</span>
+        <h2 class="section-title">The Grass <span>Collection</span></h2>
+        <p class="section-desc">
+          Meticulously cultivated for the ultra-wealthy. Each variety is engineered with bespoke visual properties, authentic springback physics, and unmistakable botanical arrogance.
+        </p>
+      </div>
+
+      <!-- Catalog Cards Grid -->
+      <div class="collection-grid" id="collection-grid">
+        <!-- Rendered dynamically by script.js with all 6 required grass products and live canvas previews -->
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 2: ENVIRONMENTAL SUITE & EXPERIENCE CONTROL DECK
+         ======================================================================= -->
+    <section class="content-section" id="experience">
+      <div class="section-header">
+        <span class="section-tag">Atmospheric Customization</span>
+        <h2 class="section-title">Bespoke <span>Atmosphere</span></h2>
+        <p class="section-desc">
+          Tailor every micro-climate factor of your personal meadow. Regulate meteorological pressure, solar trajectories, and procedural soundscapes.
+        </p>
+      </div>
+
+      <div class="experience-controls-grid">
+        <!-- Panel 1: Wind Dynamics -->
+        <div class="control-panel-box">
+          <h3 class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" stroke-width="2"/></svg>
+            Wind Dynamics
+          </h3>
+          <p class="panel-desc">Configure continuous laminar gusts and turbulent wind waves across the lawn.</p>
+          
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem;">
+            <span style="font-size: 0.8rem; color: var(--color-gray);">Intensity</span>
+            <span id="wind-slider-value" style="font-weight: 700; color: var(--color-gold-light);">25%</span>
+          </div>
+          <input type="range" id="exp-wind-slider" min="0" max="100" value="25" style="width: 100%;">
+
+          <div class="preset-buttons">
+            <button class="btn-preset" data-wind="0">Calm (0%)</button>
+            <button class="btn-preset active" data-wind="25">Gentle (25%)</button>
+            <button class="btn-preset" data-wind="50">Natural (50%)</button>
+            <button class="btn-preset" data-wind="75">Strong (75%)</button>
+            <button class="btn-preset" data-wind="100">Storm (100%)</button>
+          </div>
+        </div>
+
+        <!-- Panel 2: Rain & Moisture -->
+        <div class="control-panel-box">
+          <h3 class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25M8 19v2m8-2v2m-4-1v2" stroke-width="2"/></svg>
+            Precipitation & Rain
+          </h3>
+          <p class="panel-desc">Summon fine artisanal rainwater droplets that deflect off blades and impart wet specular luster.</p>
+          
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;">
+            <button class="toggle-chip" id="exp-rain-toggle">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25M8 19v2m8-2v2" stroke-width="2"/></svg>
+              <span id="exp-rain-status">Rain: Inactive</span>
+            </button>
+          </div>
+
+          <div class="preset-buttons" id="rain-intensity-presets">
+            <button class="btn-preset active" data-rain="light">Light Rain</button>
+            <button class="btn-preset" data-rain="medium">Medium Rain</button>
+            <button class="btn-preset" data-rain="heavy">Heavy Rain</button>
+          </div>
+        </div>
+
+        <!-- Panel 3: Celestial Solar Cycle -->
+        <div class="control-panel-box">
+          <h3 class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke-width="2"/></svg>
+            Time of Day
+          </h3>
+          <p class="panel-desc">Choose your solar zenith. From warm amber dawn to starry midnight with bio-luminescent fireflies.</p>
+          
+          <div class="preset-buttons" id="exp-time-buttons" style="margin-top: 0;">
+            <button class="btn-preset" data-time="sunrise">Sunrise</button>
+            <button class="btn-preset active" data-time="morning">Morning</button>
+            <button class="btn-preset" data-time="afternoon">Afternoon</button>
+            <button class="btn-preset" data-time="sunset">Sunset</button>
+            <button class="btn-preset" data-time="night">Night</button>
+          </div>
+        </div>
+
+        <!-- Panel 4: Surprise Garden Organisms -->
+        <div class="control-panel-box">
+          <h3 class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 0 0-4 4c0 3 4 8 4 8s4-5 4-8a4 4 0 0 0-4-4z" stroke-width="2"/></svg>
+            Surprise Garden Life
+          </h3>
+          <p class="panel-desc">Enable organic encounters. Living creatures periodically visit your luxury turf.</p>
+
+          <div class="creatures-grid">
+            <div class="creature-card-toggle enabled" data-creature="butterflies">
+              <div class="creature-info">
+                <span class="creature-name">Butterflies</span>
+                <span class="creature-status">Active</span>
+              </div>
+              <span class="pill-dot"></span>
+            </div>
+
+            <div class="creature-card-toggle enabled" data-creature="ladybugs">
+              <div class="creature-info">
+                <span class="creature-name">Ladybugs</span>
+                <span class="creature-status">Active</span>
+              </div>
+              <span class="pill-dot"></span>
+            </div>
+
+            <div class="creature-card-toggle enabled" data-creature="flowers">
+              <div class="creature-info">
+                <span class="creature-name">Wildflowers</span>
+                <span class="creature-status">Active</span>
+              </div>
+              <span class="pill-dot"></span>
+            </div>
+
+            <div class="creature-card-toggle enabled" data-creature="fireflies">
+              <div class="creature-info">
+                <span class="creature-name">Fireflies</span>
+                <span class="creature-status">Active</span>
+              </div>
+              <span class="pill-dot"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 5: Procedural Sound Sanctuary -->
+        <div class="control-panel-box" style="grid-column: 1 / -1;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 1rem;">
+            <h3 class="panel-title" style="margin-bottom: 0;">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13" stroke-width="2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              Procedural Sound Sanctuary (Web Audio API)
+            </h3>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <button class="btn-glass" id="master-sound-toggle">
+                <span>Sound Sanctuary: Off</span>
+              </button>
+            </div>
+          </div>
+          <p class="panel-desc">Synthesized in real-time. No static loops or broken downloads — pure mathematical organic acoustics.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+            <!-- Wind Sound -->
+            <div class="sound-track-row">
+              <div class="sound-meta">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9.59 4.59A2 2 0 1 1 11 8H2" stroke-width="2"/></svg>
+                <span>Wind Rustle</span>
+              </div>
+              <input type="range" id="vol-wind" min="0" max="100" value="65">
+            </div>
+
+            <!-- Birds Sound -->
+            <div class="sound-track-row">
+              <div class="sound-meta">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M16 4h2a2 2 0 0 1 2 2v2M8 20H6a2 2 0 0 1-2-2v-2" stroke-width="2"/></svg>
+                <span>Alpine Birds</span>
+              </div>
+              <input type="range" id="vol-birds" min="0" max="100" value="50">
+            </div>
+
+            <!-- Rain Sound -->
+            <div class="sound-track-row">
+              <div class="sound-meta">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M8 19v2m8-2v2m-4-1v2" stroke-width="2"/></svg>
+                <span>Gentle Rain</span>
+              </div>
+              <input type="range" id="vol-rain" min="0" max="100" value="70">
+            </div>
+
+            <!-- Meadow Ambience Sound -->
+            <div class="sound-track-row">
+              <div class="sound-meta">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" stroke-width="2"/></svg>
+                <span>Meadow Crickets</span>
+              </div>
+              <input type="range" id="vol-meadow" min="0" max="100" value="45">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 3: REAL-TIME STATISTICS ("YOUR GRASS EXPERIENCE")
+         ======================================================================= -->
+    <section class="content-section" id="statistics">
+      <div class="section-header">
+        <span class="section-tag">Audited Telemetry</span>
+        <h2 class="section-title">Your Grass <span>Experience</span></h2>
+        <p class="section-desc">
+          Uncompromised empirical data on your interaction with the turf. Verified on-device and stored exclusively in your local vault.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="stat-touches">0</div>
+          <div class="stat-label">Total Blade Touches</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-num" id="stat-time">00:00</div>
+          <div class="stat-label">Time Spent on Lawn</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-num" id="stat-favorite">Classic</div>
+          <div class="stat-label">Most Cherished Variety</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-num" id="stat-unlocked">1 / 6</div>
+          <div class="stat-label">Turf Varieties Unlocked</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-num" id="stat-wind-count">0</div>
+          <div class="stat-label">Wind Gusts Summoned</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-num" id="stat-rain-count">0</div>
+          <div class="stat-label">Precipitation Sessions</div>
+        </div>
+      </div>
+
+      <!-- Achievements Showcase -->
+      <div style="margin-top: 5rem;">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+          <span class="section-tag">Elite Recognition</span>
+          <h3 class="section-title" style="font-size: 2.2rem;">Botanical <span>Honors</span></h3>
+          <p class="section-desc">Milestones for the dedicated connoisseur of digital vegetation.</p>
+        </div>
+
+        <div class="achievements-grid" id="achievements-grid">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 4: ABOUT — REDEFINING THE MEANING OF GRASS
+         ======================================================================= -->
+    <section class="content-section" id="about">
+      <div class="section-header">
+        <span class="section-tag">Haute Horlogerie of Agronomy</span>
+        <h2 class="section-title">Redefining the meaning of <span>grass.</span></h2>
+      </div>
+
+      <div class="about-editorial-wrap">
+        <div class="about-quote-box">
+          <span class="about-quote-mark">“</span>
+          <p class="about-quote-text">
+            At Grass Premium, we believe that ordinary grass deserves extraordinary attention. We transform a simple natural experience into something exclusive, immersive and unnecessarily expensive.
+          </p>
+          <span class="about-author">— Maximilien V. von Grün, Chief Botanical Officer</span>
+        </div>
+
+        <div class="about-text-content">
+          <h3>The Audacity of Botanical Opulence</h3>
+          <p>
+            For millennia, humanity committed the egregious blunder of taking nature for granted. Wild meadows grew without invoices, dew condensed without licensing fees, and sunlight struck the pasture free of tariff.
+          </p>
+          <p>
+            In 2026, our consortium of Swiss horologists, Zurich venture capitalists, and Kyoto landscape architects resolved to fix this market inefficiency. Grass Premium was born: an artisan digital biome where every blade responds with calibrated inertia and pedigree.
+          </p>
+          <p>
+            Nature is free. Ours isn't. And therein lies its unparalleled majesty.
+          </p>
+        </div>
+      </div>
+
+      <!-- Luxury Pillars -->
+      <div class="pillars-grid">
+        <div class="pillar-item">
+          <div class="pillar-num">01</div>
+          <h4 class="pillar-title">Sub-Millimeter Elasticity</h4>
+          <p class="pillar-desc">Each blade is governed by damped harmonic oscillation mathematics mimicking Swiss tourbillon movements.</p>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-num">02</div>
+          <h4 class="pillar-title">Chromatic Pedigree</h4>
+          <p class="pillar-desc">Custom chlorophyll pigment spectrums ranging from velvet pasture emeralds to 24-karat bio-crystalline foliage.</p>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-num">03</div>
+          <h4 class="pillar-title">Irrefutable Status</h4>
+          <p class="pillar-desc">Anybody can step outside into a park. Only the truly distinguished can afford to caress digital grass at R$ 899,90.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================================
+       PURCHASE / DEMO SIMULATION MODAL
+       ======================================================================= -->
+  <div class="modal-overlay" id="purchase-modal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-grass-title">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke-width="2"/><line x1="6" y1="6" x2="18" y2="18" stroke-width="2"/></svg>
+      </button>
+
+      <div class="modal-icon-badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-width="2"/></svg>
+      </div>
+
+      <h3 class="modal-title" id="modal-grass-title">Unlock Divine Grass</h3>
+      <div class="modal-subtitle">Exorbitant Botanical Acquisition</div>
+
+      <div class="modal-product-summary">
+        <div>
+          <div style="font-weight: 700; color: var(--color-white);" id="modal-summary-name">Divine Grass</div>
+          <div style="font-size: 0.75rem; color: var(--color-gray);">Lifetime Digital Meadow Rights</div>
+        </div>
+        <div style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--color-gold-light); font-weight: 700;" id="modal-summary-price">
+          R$ 899,90
+        </div>
+      </div>
+
+      <p class="modal-irony-note" id="modal-irony-text">
+        "Você não compra grama. Você compra status."<br>
+        <span style="font-size: 0.75rem; opacity: 0.8; display: block; margin-top: 0.5rem; color: var(--color-gold);">
+          [Demonstração Fictícia: Nenhum valor real será cobrado. Seu status de bom senso financeiro, no entanto, será questionado.]
+        </span>
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-glass" id="modal-cancel-btn">Reflect & Cancel</button>
+        <button class="btn-luxury" id="modal-confirm-btn">Confirm Acquisition</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- =======================================================================
+       FOOTER
+       ======================================================================= -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand-bio">
+        <a href="#hero" class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22C12 14 7 7 19 2C10 8 13 15 12 22Z" fill="none" stroke="currentColor"/></svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Grass Premium</span>
+            <span class="brand-tag">Haute Botanique</span>
+          </div>
+        </a>
+        <p>
+          "Touch the grass. Experience the luxury."<br>
+          The definitive satire on luxury commercialization and digital nature. Certified 100% organic virtual chlorophyll.
+        </p>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4>Collection</h4>
+        <ul>
+          <li><a href="#collection">Classic Green (Free)</a></li>
+          <li><a href="#collection">Royal Emerald</a></li>
+          <li><a href="#collection">Diamond Grass</a></li>
+          <li><a href="#collection">Golden Grass</a></li>
+          <li><a href="#collection">Velvet Grass</a></li>
+          <li><a href="#collection">Divine Grass</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4>Atmosphere</h4>
+        <ul>
+          <li><a href="#experience">Wind Dynamics</a></li>
+          <li><a href="#experience">Precipitation Engine</a></li>
+          <li><a href="#experience">Solar Circadian Cycle</a></li>
+          <li><a href="#experience">Sound Sanctuary</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4>Manifesto</h4>
+        <ul>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#statistics">Your Telemetry</a></li>
+          <li><a href="#about">The Art of Botanical Extravagance</a></li>
+          <li><a href="javascript:void(0)" id="footer-reset-data">Reset Local Experience Data</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        &copy; 2026 Grass Premium International AG. All rights reserved. Nature is free. Ours isn't.
+      </div>
+      <div>
+        <button class="btn-top" id="btn-back-to-top">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none"><path d="M18 15l-6-6-6 6" stroke-width="2"/></svg>
+          <span>Return to Canopy</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
